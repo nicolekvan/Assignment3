@@ -20,16 +20,17 @@ def main():
 
             if command in commands:
                 if command.lower() in ["e", "p"]:
-                    run(command, args)
+                    run_edits(command, args)
                 else:
                     run(command, args)
             else:
                 print("Invalid Command")
 
     except IndexError:
-        print(f"Improper amount of arguments: Please enter commands in the proper format")
+        print(f"Error: Improper amount of arguments.")
     except Exception as e:
         print(e)
+
 
 if __name__ == '__main__':
     main()

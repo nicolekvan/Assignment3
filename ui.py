@@ -3,7 +3,7 @@
 # 76647093
 
 from pathlib import Path
-from Assignment3.Profile import *
+from Profile import *
 
 def print_directory(args):
     path = Path(args[0])
@@ -213,17 +213,17 @@ def run(command, args):
     elif command.lower() == "o":
         current_file = open_file(args[0])
 
-    elif command.lower() == "e":
+    else:
+        print("Error: Please enter a valid command and path")
+
+def run_edits(command, args):
+    if command.lower() == "e":
         if current_file:
             args.insert(0, current_file)
             edit_file(args)
         else:
             print("No file is currently opened. Please open a file first.")
-
     elif command.lower() == "p":
         if current_file:
             args.insert(0, current_file)
             print_profile(args)
-
-    else:
-        print("Error: Please enter a valid command and path")
