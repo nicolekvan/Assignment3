@@ -4,9 +4,9 @@
 
 # Replace the following placeholders with your information.
 
-# NAME
-# EMAIL
-# STUDENT ID
+# Nicole Kwan
+# nkwan3@uci.edu
+# 76647093
 
 import json
 from collections import namedtuple
