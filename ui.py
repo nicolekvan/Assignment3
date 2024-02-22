@@ -112,12 +112,10 @@ def open_file(path):
 def edit_file(args):
     try:
         path = Path(args[0])
-
+        print("DSU file successfully loaded.")
         if path.exists():
             profile = Profile()
             profile.load_profile(str(path))
-            print("DSU file successfully loaded.")
-
             if '-usr' in args:
                 username = args.index('-usr') + 1
                 profile.username = args[username]
@@ -128,11 +126,14 @@ def edit_file(args):
                 bio = args.index('-bio') + 1
                 profile.bio = args[bio]
             if '-addpost' in args:
-                new_post = args.index('-addpost') + 1
-                profile.add_post(Post(new_post))
+                idx = args.index('-addpost') + 1
+                new_post = args[idx:]
+                message = (" ").join(new_post)
+                profile.add_post(Post(message))
             if '-delpost' in args:
-                post_id = args.index('-delpost') + 1
-                if profile.del_post(post_id):
+                idx = args.index('-delpost') + 1
+                post_id = args[idx]
+                if profile.del_post(int(post_id)):
                     print(f"Deleted post with ID {post_id}.")
                 else:
                     print(f"Post with ID {post_id} not found.")
