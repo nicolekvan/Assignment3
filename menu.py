@@ -31,8 +31,9 @@ def print_menu():
             '-usr': E/P stored profile username
             '-pwd': E/P stored profile password
             '-bio': E/P stored profile bio
-          I - Post on the Internet!
+          I - Post on the Internet
             'i -post': Post on ICS 32 Distributed Social
+            'i -bio': Change bio on Distributed Social profile
           
           """)
     print("Format: COMMAND INPUT -OPTION INPUT")
