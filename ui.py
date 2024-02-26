@@ -140,7 +140,7 @@ def edit_file(args):
                     print(f"Post with ID {post_id} not found.")
 
             profile.save_profile(str(path))
-            print("Profile successfully updated.")
+            print("Profile successfully updated.")            
         else:
             print(f"File {path} not found.")
     except Exception as e:
@@ -149,8 +149,8 @@ def edit_file(args):
 
 def print_profile(args):
     try:
-        filename = args[0]
-        with open(filename, 'r') as file:
+        path = args[0]
+        with open(path, 'r') as file:
             data = json.load(file)
             if '-usr' in args:
                 print(f"Username: {data['username']}")
@@ -174,9 +174,23 @@ def print_profile(args):
                 for index, post in enumerate(data['_posts']):
                     print(f"{index}: {post}")
     except FileNotFoundError:
-        print(f"File {filename} not found.")
+        print(f"File {path} not found.")
     except Exception as e:
         print(f"Error occurred while printing profile data: {e}")
+
+def post_online(path, message, bio=""):
+    try:
+        profile = Profile()
+        profile.load_profile(path)
+        if profile.dsuserver == "":
+            server = input("Enter server name: ")
+        else:
+            server = "168.235.86.101"
+        send(server, 3021, profile.username, profile.password, message, bio=bio)
+
+    except FileNotFoundError:
+        print(f"File {path} not found.")
+
 
 
 # RUN METHOD
@@ -229,3 +243,29 @@ def run_edits(command, args):
         if current_file:
             args.insert(0, current_file)
             print_profile(args)
+        else:
+            print("No file is currently opened. Please open a file first.")
+    elif command.lower() == "i":
+        if current_file:
+            if "-post" in args:
+                while True:
+                    message = input("Enter post: ").strip()
+                    if message.lower() == "q":
+                        break
+                    if len(message) > 0:
+                        post_online(current_file, message)
+                    else:
+                        print("Not enough characters. Please try again")
+                        continue
+            if "-bio" in args:
+                ask = input("Would you like to enter a message? (y/n): ")
+                if ask.lower() == "y":
+                    message = input("Enter message: ")
+                else:
+                    message = ""
+                bio = input("Enter new bio: ")
+                post_online(current_file, message, bio)
+                
+
+        else:
+            print("No file is currently opened. Please open a file first.")
