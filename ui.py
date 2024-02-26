@@ -4,6 +4,7 @@
 
 from pathlib import Path
 from Profile import *
+from ds_client import send
 
 def print_directory(args):
     path = Path(args[0])
