@@ -12,9 +12,9 @@ def print_menu():
             '-f': list only files
             '-s': search specific file
             '-e': print file under specific extension
-          
+
           .DSU FILES
-          
+
           C - Create New .dsu File
             '-n': name .dsu file
           D - Delete .dsu File
@@ -34,7 +34,7 @@ def print_menu():
           I - Post on the Internet
             'i -post': Post on ICS 32 Distributed Social
             'i -bio': Change bio on Distributed Social profile
-          
+
           """)
     print("Format: COMMAND INPUT -OPTION INPUT")
     print("-----------------------------------")
